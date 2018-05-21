@@ -8,10 +8,11 @@ const distPath = path.resolve(root, "dist");
 const srcPath = path.resolve(root, "src");
 
 module.exports = () => {
-  const htmlDocuments = glob.sync(`${srcPath}/**/*.html`);
+  const viewsPath = `${srcPath}/views`;
+  const htmlDocuments = glob.sync(`${viewsPath}/**/*.html`);
 
   return htmlDocuments.map(document => {
-    const filename = document.replace(srcPath, distPath);
+    const filename = document.replace(viewsPath, distPath);
     return new HtmlWebpackPlugin({
       template: document,
       filename,
