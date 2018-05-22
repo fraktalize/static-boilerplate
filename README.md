@@ -11,4 +11,7 @@ This is a simple boilerplate for static HTML pages with HTML, SCSS and ES2018 su
 ## Usage
 
 Clone the repository, and run `yarn` inside of the project folder to install all dependencies.
-Edit the HTML files in the `views` folder. Run `yarn build` for development build, and `yarn build:prod` for production build.
+Edit the HTML files in the `views` folder.
+Run `yarn start` to fire up webpack-serve and BrowserSync for development.
+
+Run `yarn build` for development build, and `yarn build:prod` for production build.

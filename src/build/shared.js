@@ -5,6 +5,7 @@ const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const FaviconsPlugin = require("favicons-webpack-plugin");
 const processHTMLPages = require("./processHTMLHelper.js");
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 const root = path.resolve(__dirname, "../..");
 const distPath = path.resolve(root, "dist");
@@ -27,6 +28,11 @@ module.exports = {
     }),
     new MiniCssPlugin({
       filename: "[hash].style.css"
+    }),
+    new BrowserSyncPlugin({
+      host: "localhost",
+      port: 3000,
+      proxy: "http://localhost:8080/"
     })
   ].concat(processHTMLPages()),
   module: {
@@ -52,6 +58,6 @@ module.exports = {
   },
   output: {
     path: distPath,
-    filename: "[chunkhash].bundle.js"
+    filename: "[hash].bundle.js"
   }
 };
