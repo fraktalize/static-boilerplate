@@ -3,7 +3,6 @@ const webpack = require("webpack");
 const MiniCssPlugin = require("mini-css-extract-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
-const FaviconsPlugin = require("favicons-webpack-plugin");
 const processHTMLPages = require("./processHTMLHelper.js");
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
@@ -45,7 +44,17 @@ module.exports = {
       {
         test: [/\.scss$/, /\.sass$/, /\.css$/],
         exclude: [/node_modules/],
-        use: [MiniCssPlugin.loader, "css-loader", "sass-loader"]
+        use: [
+          MiniCssPlugin.loader,
+          "css-loader",
+          "sass-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              config: { path: `${srcPath}/build/postcss.config.js` }
+            }
+          }
+        ]
       },
       {
         test: /\.(ttf|eot|svg|jpg|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
