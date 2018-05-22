@@ -18,7 +18,7 @@ module.exports = () => {
       template: document,
       filename,
       hash: true,
-      title: pack.name,
+      title: pack.config.title,
       favicon: pack["meta-tags"].favicon,
       minify: false,
       meta: pack["meta-tags"]

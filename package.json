@@ -4,7 +4,7 @@
   "description": "Boilerplate for static projects",
   "main": "index.js",
   "repository": "https://gitlab.com/lucaskrig/krig-boilerplate",
-  "author": "Lucas Meijer",
+  "author": "Lucas Meijer <lucas@krig.io>",
   "license": "MIT",
   "private": true,
   "meta-tags": {
@@ -27,8 +27,11 @@
     "robots": "",
     "charset": "utf-8"
   },
+  "config": {
+    "title": "Static Boilerplate"
+  },
   "scripts": {
-    "build:dev": "webpack --progress --config src/build/webpack.config-dev.js",
+    "build": "webpack --progress --config src/build/webpack.config-dev.js",
     "build:prod": "webpack --progress --config src/build/webpack.config-prod.js"
   },
   "devDependencies": {
