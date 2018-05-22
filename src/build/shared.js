@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssPlugin = require("mini-css-extract-plugin");
+const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const FaviconsPlugin = require("favicons-webpack-plugin");
 const processHTMLPages = require("./processHTMLHelper.js");
@@ -12,7 +13,7 @@ const srcPath = path.resolve(root, "src");
 module.exports = {
   context: srcPath,
   target: "web",
-  entry: "./scripts/main.js",
+  entry: ["babel-polyfill", "./scripts/main.js"],
   plugins: [
     new CopyPlugin([
       {
@@ -20,8 +21,12 @@ module.exports = {
         to: path.resolve(distPath, "images")
       }
     ]),
+    new ImageminPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      disable: process.env.NODE_ENV !== "production"
+    }),
     new MiniCssPlugin({
-      filename: "style.css"
+      filename: "[hash].style.css"
     })
   ].concat(processHTMLPages()),
   module: {
